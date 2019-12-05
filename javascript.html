@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>CIT 261 - Jarek Johnson</title>
+  </head>
+	<script>
+		/* Function: countEvents()
+		 * Summary: Will perform loop action through a given list and find the locations
+		 * of all evens using modulus.
+		 */
+		function countEvens(list)
+ 		 {
+ 		 	var listEvens = [];
+ 		 	var count = 0;
+ 		 	for (var i = 0; i < list.length; i++)
+ 		 	{
+ 		 		if (list[i] % 2 == 0)
+ 		 		{
+ 		 			listEvens.length = 6;
+ 		 			listEvens[count] = list[i];
+ 		 			count++;
+ 		 		}
+ 		 	}
+ 		 	return listEvens;
+ 		 }
+ 		 
+ 		 /* Function: countOdds()
+		 * Summary: Will perform loop action through a given list and find the locations
+		 * of all odds using modulus.
+		 */
+ 		 function countOdds(list)
+ 		 {
+ 		 	var listOdds = [];
+ 		 	var count = 0;
+ 		 	for (var i = 0; i < list.length; i++)
+ 		 	{
+ 		 		if (list[i] % 2 == 1)
+ 		 		{
+ 		 			listOdds.length = 8;
+ 		 			listOdds[count] = list[i];
+ 		 			count++;
+ 		 		}
+ 		 	}
+ 		 	return listOdds;
+ 		 }
+ 		 
+ 		 function display()
+ 		 {
+ 		 	var list = [ 17, 8, 9, 5, 20, 54, 31, 2, 1, 6, 7, 19, 43, 90 ];
+    		var listEvens = countEvens(list);
+    		var listOdds = countOdds(list);
+    		var displayEvens = listEvens.toString();
+    		var displayOdds = listOdds.toString();
+    		
+    		document.getElementById("evenOutput").innerHTML = displayEvens;	
+    		document.getElementById("oddOutput").innerHTML = displayOdds;
+ 		 }
+ 		 
+	</script>
+  
+  <body>
+	  <div class="main">
+	  <h1>Javascript</h1>
+      <h2>Loops, Conditional Statements, Functions, Parameters, Arrays, Associative Arrays</h2>
+      <br />
+      <h3>This program loops through the given list and displays both the evens and the odds.</h3>
+      <h3>List: [ 17, 8, 9, 5, 20, 54, 31, 2, 1, 6, 7, 19, 43, 90 ];</h3>
+      <button type='button' onclick='display()'>Try Me!</button>
+      <br />
+      <div> Evens: </div>
+      <div id="evenOutput"></div>
+      <div> Odds: </div>
+      <div id="oddOutput"></div>
+      <br />
+    </div>
+  </body>
+</html>
