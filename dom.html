@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>CIT 261 - Jarek Johnson</title>
+  </head>
+	<script>
+	
+	var lists = [];
+	
+	/* Function: addTo()
+ 	 * Summary: Creates a random number and adds it to a list.
+	 */ 
+	function add() 
+	{	
+   	 	lists.push(" " + Math.floor(Math.random() *11) + " ");
+   	 	
+   	 	item.innerHTML = "Added to the list";
+    	
+    	displayList(lists);
+	}
+	
+	/* Function: deleteFirst()
+ 	 * Summary: Removes and deletes the first item found in the list.
+	 */
+	function deleteFirst() 
+	{
+		lists.shift();
+		
+		displayList(lists);
+	}
+	
+	/* Function: first()
+ 	 * Summary: Creates a random number and adds the new number 
+ 	 * to the first spot in the list.
+	 */
+	function first() 
+	{
+    	lists.unshift(" " + Math.floor(Math.random() *11) + " ");
+    	
+    	displayList(lists);
+	}
+	
+	/* Function: displayList()
+ 	 * Summary: Shows the updated list in it's entirety.
+ 	 */
+	function displayList(lists)
+	{
+		document.getElementById("item").innerHTML = lists;
+	}
+	</script>
+  
+  <body>
+	  <div class="main">
+	  <h1>DOM Manipulation</h1>
+      <h2>Using createElement, appendChild, insertBefore, removeChild, etc..</h2>
+      <br />
+      <h2>What change would you like to make?</h2>
+        <br />
+        <input type="button" onclick="add();" value="Add Item">
+        <input type="button" onclick="first();" value="First Item">
+        <input type="button" onclick="deleteFirst();" value="Remove First Item">
+      <br />
+      <p id="item"></p>
+    </div>
+  </body>
+</html>
