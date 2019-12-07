@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>CIT 261 - Jarek Johnson</title>
+    
+    <style> 
+	div.rotate:hover
+	{
+  		width: 120px;
+  		height: 50px;
+  		text-align: center;
+  		background-color: cyan;
+  		transform: rotate(1080deg);
+	}
+	
+	div.rotate
+	{
+		transition: transform 4s;
+	}	
+
+	div.skewy:hover
+	{
+  		width: 120px;
+  		height: 50px;
+  		text-align: center;
+  		background-color: magenta;
+  		transition: height 3s;
+	}
+	
+	div.skewy
+	{
+		height: 100px;
+	}
+
+	div.scaley:hover
+	{
+		width: 1000px;
+  		height: 50px;
+  		text-align: center;
+  		background-color: green;
+  		transition: width 4s;
+	}
+	
+	div.scaley 
+  	{
+  		width: 300px;
+  	}
+	</style>
+	
+  	</head>
+  	
+	<script>
+	</script>
+  
+  <body>
+	  	<div class="main">
+	  		<h1>Transform: Rotate, SkewY, and ScaleY</h1>
+		<br>
+			<h2>Hover: Shrink</h2>
+			<div class="skewy">Hover over me and I'll shrink!</div>
+		<br>
+			<h2>Hover: Stretch</h2>
+			<div class="scaley">Hover over me and I'll stretch!</div>
+		<br>
+			<h2>Hover: Rotate and Spiral</h2>
+			<div class="rotate">Hover over me and I'll rotate!</div>
+    </div>
+  </body>
+</html>
