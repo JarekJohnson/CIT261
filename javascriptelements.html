@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>CIT 261 - Jarek Johnson</title>
+    
+    <style> 
+	  </style>
+	
+  	</head>
+	  <script>
+		function displayDate() 
+		{
+  			document.getElementById("time").innerHTML = Date();
+		}
+	  </script>
+  
+    <body>
+	  	  <div class="main">
+	  		  <h1>Javascript Events - Show Date</h1>
+			    <h2>OnClick: (Will show/renew the date when the user clicks the element.)</h2>
+				  <button onclick="displayDate()">Show Time</button>
+		<br>
+			    <h2>OnMouseOver: (Will show/renew the date when the user mouses over the element.)</h2>
+				  <button onmouseover="displayDate()">Show Time</button>
+		<br>
+			    <h2>OnMouseOut: (Will show/renew the date when the user moves their mouse off of the element.)</h2>
+				  <button onmouseout="displayDate()">Show Time</button>
+		<p id="time"></p>	
+    </div>
+    </body>
+</html>
