@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>CIT 261 - Jarek Johnson</title>
+  </head>
+	<script>
+	
+	/* Function: addTo()
+ 	 * Summary: Adds an element to a shopping list using appendChild.
+	 */ 
+	function addTo() 
+	{
+    	var item = document.createElement("UL");
+    	var inputText = document.getElementById('input').value;
+    	if (inputText == "") 
+    	{
+        	alert("You must write something!");
+    	} 
+    	else 
+    	{
+        	item.innerHTML = inputText;
+    	}
+    	document.getElementById("items").appendChild(item);
+	}
+	
+	/* Function: insertFirst()
+ 	 * Summary: Places an item at the beginning of a list using insertBefore.
+	 */ 
+	function insertFirst() 
+	{
+    	var item = document.createElement("UL");
+    	var text = document.createTextNode("HIGH PRIORITY!");
+
+    	item.appendChild(text);
+
+    	var list = document.getElementById("items");
+
+    	list.insertBefore(item, list.childNodes[0]);
+	}
+	
+	/* Function: remove()
+ 	 * Summary: Deletes the first item in the list using removeChild.
+	 */ 
+	function remove() 
+	{
+    	var list = document.getElementById("items");
+    	list.removeChild(list.childNodes[0]);
+	}
+	</script>
+  
+   <body>
+	  <div class="mainContent">
+      <h1>Shopping List <h/1> 
+      <h6>DOM Manipulation: Using createElement, appendChild, insertBefore, and removeChild. </h6>
+      <h6>Please insert shopping list item: </h6>
+      <br />
+      <input type="text" id="input">
+      <br />
+        <input type="button" onclick="addTo();" value="Add To List">
+        <input type="button" onclick="insertFirst();" value="Mark: HIGH PRIORITY">
+        <input type="button" onclick="remove();" value="Remove Top Item">
+        
+    </div>
+
+    <ul id="items"></ul>
+  </body>
+</html>
