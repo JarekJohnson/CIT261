@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>CIT 261 - Jarek Johnson</title>
+    
+    <style> 
+		div.bluepurple:hover
+		{
+  			width: 100px;
+  			height: 100px;
+  			background-color: blue;
+  			animation-name: bluetopurple;
+  			animation-duration: 6s;
+		}
+		
+		div.redorange:hover 
+		{
+  			width: 100px;
+  			height: 100px;
+  			background-color: red;
+  			animation-name: redtoorange;
+  			animation-duration: 6s;
+		}
+		
+		div.greenblue:hover
+		{
+  			width: 100px;
+  			height: 100px;
+  			background-color: green;
+  			animation-name: greentoblue;
+  			animation-duration: 6s;
+		}
+
+		@keyframes bluetopurple 
+		{
+  			from {background-color: blue;}
+  			to {background-color: purple;}
+		}
+		
+		@keyframes redtoorange 
+		{
+  			from {background-color: red;}
+  			to {background-color: orange;}
+		}
+		
+		@keyframes greentoblue 
+		{
+  			from {background-color: green;}
+  			to {background-color: blue;}
+		}
+	</style>
+	
+  	</head>
+  	
+	<script>
+	</script>
+  
+  <body>
+	  	<div class="main">
+	  		<h1>Animation: Color Change</h1>
+		<br>
+			<h2>Blue to Purple</h2>
+			<div class="bluepurple">Hover over me and I'll <br> change from blue to purple!</div>
+		<br>
+			<h2>Red to Orange</h2>
+			<div class="redorange">Hover over me and I'll <br> change from red to orange!</div>
+		<br>
+			<h2>Green to Blue</h2>
+			<div class="greenblue">Hover over me and I'll <br> change from green to blue!</div>
+    </div>
+  </body>
+</html>
