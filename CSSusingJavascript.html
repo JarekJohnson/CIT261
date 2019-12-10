@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>CIT 261 - Jarek Johnson</title>
+<style>
+#object {
+  width: 50px;
+  height: 400px;
+  position: relative;
+  background: gray;
+}
+#animation {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: black;
+}
+</style>
+<script>
+//Utilizes the frame function to move the box down the hallway
+function motion()
+{
+  var box = document.getElementById("animation");
+  var position = 0;
+  var id = setInterval(frame, 20);
+
+  //frame is used to keep track of the position of the box
+  //and to move it pixel by pixel
+  function frame()
+  {
+    if (position == 350)
+    {
+      clearInterval(id);
+    }
+    else
+    {
+      position++;
+      //top and bottom decide the direction that the
+      //box moves
+      box.style.top = position + 'px';
+      box.style.bottom = position + 'px';
+    }
+  }
+}
+</script>
+</head>
+<body>
+<h1>CSS using Javascript</h1>
+<p>
+<button onclick="motion()">Click to begin</button>
+</p>
+
+<div id ="object">
+<div id ="animation"></div>
+</div>
+</body>
+</html>
