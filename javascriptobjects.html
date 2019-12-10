@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>CIT 261 - Jarek Johnson</title>
+	<style>
+		#main
+		{
+			background-color: #ccc;
+		}
+
+		.content
+		{
+			margin: auto;
+			text-align: center;
+		}
+
+		.input, .button
+		{
+			border-radius: 10px 10px 10px 10px;
+			width: 800px;
+			height: 50px;
+			font-size: 20px;
+		}
+
+		.button
+		{
+			background-color: grey;
+		}
+
+		#output
+		{
+			font-size: 28px;
+		}
+
+
+	</style>
+  	</head>
+
+	<script>
+		function Car(make, model, year, color)
+		{
+			this.make = make;
+  			this.model = model;
+  			if (!isNaN(year))
+  				this.year = year;
+  			else
+  				this.year = 0;
+
+  			this.color = color;
+  			this.fullName = "A " + this.make + " " + this.model + " that is " +
+   	 			this.year + " years old and the color " + this.color;
+
+			this.getFullName = function() { return this.fullName; }
+
+		}
+
+
+		function createCar()
+		{
+			var make = document.getElementById("make").value;
+  			var model = document.getElementById("model").value;
+ 			var year = document.getElementById("year").value;
+			var color = document.getElementById("color").value;
+
+			var newCar = new Car(make, model, year, color);
+			return newCar;
+		}
+
+		function displayCreatedCar()
+		{
+			var c = createCar();
+			document.getElementById("output").innerHTML = c.getFullName();
+		}
+
+
+
+	</script>
+
+  <body id="main">
+
+  	<form class="content">
+  		<h1>Create A Car</h1>
+  		<br>
+	  		<input type="text" id="make" placeholder="Make" class="input">
+	  	</br>
+		<br>
+			<input type="text" id="model" placeholder="Model" class="input">
+		</br>
+		<br>
+			<input type="text" id="year" placeholder="Year" class="input">
+		</br>
+		<br>
+			<input type="text" id="color" placeholder="Color" class="input">
+		</br>
+	  	<button type="button" onclick="displayCreatedCar()" class="button">Create a Car</button>
+
+	  	<div id="output"></div>
+	</form>
+  </body>
+</html>
