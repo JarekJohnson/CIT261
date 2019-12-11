@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>CIT 261 - Jarek Johnson - Java Objects</title>
+	<style>
+	</style>
+  	</head>
+  	
+	<script>
+		// For our basic storage needs
+		function storeBasicData() {
+		    var data = document.getElementById('basicData').value;
+
+		    localStorage.setItem("basicData", data);
+		    document.getElementById('basicStoredData').innerHTML = "The Data Was Stored Successfully";
+		}
+
+		function getBasicData() {
+		    var data = localStorage.getItem("basicData");
+
+		    var storedData = "";
+
+		    if (data != null) {
+		        storedData = "Data Pulled: " + data;
+		    } else {
+		       	storedData = "ERROR: No data stored";
+		    }
+
+		    document.getElementById('basicPulledData').innerHTML = storedData;
+		}
+
+		// For our array storage needs
+		function storeArrayData() {
+		    var arrayData1 = document.getElementById("arrayData1").value;
+		    var arrayData2 = document.getElementById("arrayData2").value;
+		    var arrayData3 = document.getElementById("arrayData3").value;
+		    
+		    var array = [arrayData1, arrayData2, arrayData3];
+		   
+		    localStorage.setItem("arrayData", JSON.stringify(array));
+		    document.getElementById("arrayStoredData").innerHTML = "The Data Was Stored Successfully";
+		}
+
+		function getArrayData() {
+		    var array = localStorage.getItem("arrayData");
+		    var storedData = "Data Pulled: " + array;
+		    document.getElementById("arrayPulledData").innerHTML = storedData;
+		}
+
+		// For our associative array storage needs
+		function storeAssocArrayData() {
+		    var name = document.getElementById("assocArrayName").value;
+		    var age = document.getElementById("assocArrayAge").value;
+		    var favColor = document.getElementById("assocArrayColor").value;
+
+		    var assocArray = { name:name, age:age, favColor:favColor };
+
+		    localStorage.setItem("assocStoredData", JSON.stringify(assocArray));
+		    document.getElementById("assocArrayStoredData").innerHTML = "The Data Was Stored Successfully";
+		}
+
+		function getAssocArrayData() {
+		    var assocArray = localStorage.getItem("assocStoredData");
+		    var storedData = "Data Pulled: " + assocArray;
+		    document.getElementById("assocArrayPulledData").innerHTML = storedData;
+		}
+
+		// For our object storage needs
+		function GenericObj(name, color, shape) {
+		    this.objName = name;
+		    this.objColor = color;
+		    this.objShape = shape;
+		}
+
+		function storeObjectData() {
+		    var objName = document.getElementById('objName').value;
+		    var objColor = document.getElementById('objColor').value;
+		    var objShape = document.getElementById('objShape').value;
+
+		    var storeObj = new GenericObj(objName, objColor, objShape);
+		    
+		    localStorage.setItem("objectStoredData", JSON.stringify(storeObj));
+		    document.getElementById("objStoredData").innerHTML = "The Data Was Stored Successfully";
+		}
+
+		function getObjectData() {
+		    var pullObj = localStorage.getItem("objectStoredData");
+		    storedData = "Data Pulled: " + pullObj;
+		    document.getElementById("objPulledData").innerHTML = storedData;
+		}
+
+
+
+	</script>
+  
+  <body id="main">
+
+  	<form class="content">
+  		<h1>Input an Item to test Basic Storage</h1>
+  		<br>
+	  		<input type="text" id="basicData" placeholder="Enter a number or word" class="input">
+	  	</br>
+	  	<button type="button" onclick="storeBasicData()" class="button">Store Data</button>
+		<button type="button" onclick="getBasicData()" class="button">Pull Data</button>
+
+		<div id="basicStoredData"></div>
+	  	<div id="basicPulledData"></div>
+
+		<h1>Input 3 Items to test Array Storage</h1>
+		<br>
+	  		<input type="text" id="arrayData1" placeholder="Enter a number or word" class="input">
+	  	</br>
+	  	<br>
+	  		<input type="text" id="arrayData2" placeholder="Enter a number or word" class="input">
+	  	</br>
+	  	<br>
+	  		<input type="text" id="arrayData3" placeholder="Enter a number or word" class="input">
+	  	</br>
+	  	<button type="button" onclick="storeArrayData()" class="button">Store Array Data</button>
+		<button type="button" onclick="getArrayData()" class="button">Pull Array Data</button>
+
+		<div id="arrayStoredData"></div>
+	  	<div id="arrayPulledData"></div>
+
+		<h1>Input 3 Items to test Associative Array Storage</h1>
+		<br>
+	  		<input type="text" id="assocArrayName" placeholder="Enter the name of a person" class="input">
+	  	</br>
+	  	<br>
+	  		<input type="text" id="assocArrayAge" placeholder="Enter the person's age" class="input">
+	  	</br>
+	  	<br>
+	  		<input type="text" id="assocArrayColor" placeholder="Enter the person's favorite color" class="input">
+	  	</br>
+	  	<button type="button" onclick="storeAssocArrayData()" class="button">Store Assoc Data</button>
+		<button type="button" onclick="getAssocArrayData()" class="button">Pull Assoc Data</button>
+
+		<div id="assocArrayStoredData"></div>
+	  	<div id="assocArrayPulledData"></div>
+
+		<h1>Input 3 Items to test Object Storage</h1>
+		<br>
+	  		<input type="text" id="objName" placeholder="Enter the name of an object" class="input">
+	  	</br>
+	  	<br>
+	  		<input type="text" id="objColor" placeholder="Enter the object's color" class="input">
+	  	</br>
+	  	<br>
+	  		<input type="text" id="objShape" placeholder="Enter the object's shape" class="input">
+	  	</br>
+	  	<button type="button" onclick="storeObjectData()" class="button">Store Object Data</button>
+		<button type="button" onclick="getObjectData()" class="button">Pull Object Data</button>
+
+
+	  	<div id="objStoredData"></div>
+	  	<div id="objPulledData"></div>
+	</form>
+  </body>
+</html>
