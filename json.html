@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>CIT 261 - Jarek Johnson - Java Objects</title>
+	<style>
+	</style>
+  	</head>
+  	
+	<script>
+		var carJSON;
+
+		function toString() {
+			var make = document.getElementById("carMake").value;
+			var model = document.getElementById("carModel").value;
+			var color = document.getElementById("carColor").value;
+
+			var car = { make: make, model: model, color: color };
+
+			carJSON = JSON.stringify(car);
+		}
+
+		function toParse() {
+			var carParse = JSON.parse(carJSON);
+
+			var make = carParse.make;
+			var model = carParse.model;
+			var color = carParse.color;
+
+			var output = "It is a " + make + " " + model + " that is " + color;
+
+			document.getElementById("carParse").innerHTML = output;
+		}
+
+		function callFunc() {
+			toString();
+			toParse();
+		}
+		
+	</script>
+  
+  <body id="main">
+
+  	<form class="content">
+
+		<h1>Input 3 Items to test Object Storage</h1>
+		<br>
+	  		<input type="text" id="carMake" placeholder="Make: " class="input">
+	  	</br>
+	  	<br>
+	  		<input type="text" id="carModel" placeholder="Model: " class="input">
+	  	</br>
+	  	<br>
+	  		<input type="text" id="carColor" placeholder="Color: " class="input">
+	  	</br>
+
+		<button type="button" onclick="callFunc()" class="button">Pull Object Data</button>
+
+	  	<div id="carParse"></div>
+	</form>
+  </body>
+</html>
