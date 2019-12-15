@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>CIT 261 - Jarek Johnson</title>
+	<style>
+
+  /* List's the attributes of the main body */
+  body
+  {
+    font-family: sans-serif;
+    background-color: #DCDCDC;
+    text-align: center;
+    max-width:500px;
+    margin:auto;
+  }
+
+  /* Swipeout animation causes the list items to fling off to the right
+   when the remove "X" button is pressed */
+  @keyframes swipeout
+  {
+    from
+    {
+      padding: 12px 8px 12px 40px;
+      position: relative;
+      background: rgb(240, 240, 240);
+      color: rgb(0, 0, 0);
+    }
+    to
+    {
+      /* Allows removed element to shoot of the screen to the right and
+         disappear */
+      padding: 12px 8px 12px 4000px;
+      position: absolute;
+      background: rgba(240, 240, 240, 0);
+      color: rgba(0, 0, 0, 0);
+    }
+  }
+
+  /* List's the attributes of the remove "X" button */
+  .remove
+  {
+    padding: 12px 16px 12px 16px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: 0.3s;
+  }
+
+  /* Changes the color of the remove "X" button when mouse is hovered over */
+  .remove:hover
+  {
+    background-color: #00BFFF;
+    color: white;
+  }
+
+  /* List's the attributes of the add button */
+  .plus
+  {
+    font-family: sans-serif;
+    width: 300px;
+    height: 300px;
+    background: steelblue;
+    border-radius: 5px;
+    font-size: 25px;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  /* Changes the colors of the add button when the mouse hovers over it */
+  .plus:hover
+  {
+    background-color: #4781de;
+  }
+
+  /* List's the attributes of the input bar */
+  input
+  {
+    font-family: sans-serif;
+    width: 340px;
+    height: 50px;
+    border-radius: 5px;
+    padding: 10px, 10px, 10px, 10px;
+    font-size: 16px;
+    display: inline-block;
+    margin: 0 auto;
+  }
+
+  /* List's the attributes of the UL LI*/
+  ul li
+  {
+    font-family: sans-serif;
+    width: 360px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: lightsteelblue;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    margin: auto;
+    transition: 0.2s;
+    user-select: none;
+    list-style-type: none;
+  }
+
+  /* Will change the color of every odd element added to the list */
+  ul li:nth-child(odd)
+  {
+    background: steelblue;
+  }
+
+  /* Whenever list is hovered over with mouse, change color to emphasize */
+  ul li:hover
+  {
+    background: white;
+  }
+
+  /* Measurements of the UL */
+  ul
+  {
+    margin: 0;
+    padding: 0;
+  }
+
+	</style>
+
+  </head>
+
+	<script>
+
+/* Builds a new array and sets it to var items */
+ var items = new Array();
+
+/* Checks if the array is empty. If not, put it into the new array */
+ if (localStorage.getItem("items") != null)
+ {
+     items = new Array();
+
+     /* Checks local storage for data */
+     var jsonString = localStorage.getItem("items");
+     // parse the JSON
+     var data = JSON.parse(jsonString);
+     // for each item in 'data'
+     for (i = 0; i < data.length; i++)
+     {
+         // create item object with the found .text
+         var it = new item(data[i].text);
+         // add the item to the 'items' array
+         items.push(it);
+     }
+
+     /* Loops through the items in the list */
+     for (i = 0; i < items.length; i++)
+     {
+         /* Creates each element into an "li" */
+         var li = document.createElement("li");
+         var litext = document.createTextNode(items[i].text);
+         /* Once the new text node has been created, apply appendChild */
+         li.appendChild(litext);
+         /* Add to UL*/
+         document.getElementById("addUL").appendChild(li);
+     }
+ }
+
+ /* addTo function used when an element is created and added to the list */
+ function addTo()
+ {
+     /* Creates a list item */
+     var li = document.createElement("li");
+     /* inputItem takes in the value of the input field from user */
+     var inputItem = document.getElementById("inputField").value;
+     /* text node created for easier handling of item elements */
+     var text = document.createTextNode(inputItem);
+     li.appendChild(text);
+     /* If the user forgets to type something into the text box before
+        pressing the plus button, alert an error */
+     if (inputItem == '')
+     {
+         /* ERROR */
+         alert("YOU MUST TYPE SOMETHING FIRST.");
+     }
+     else
+     {
+       /* Add input to list */
+         document.getElementById("addUL").appendChild(li);
+     }
+
+     /* Clears input field */
+     document.getElementById("inputField").value = "";
+
+     /* Apply remove X */
+     var span = document.createElement("SPAN");
+     var stext = document.createTextNode("\u00D7");
+     span.className = "remove";
+     span.appendChild(stext);
+     li.appendChild(span);
+
+     /* Gathering up all elements of remove */
+     var remove = document.getElementsByClassName("remove");
+
+     /* Loops through remove elements */
+     for (i = 0; i < remove.length; i++)
+     {
+       /* When onclick is called for remove elements, perform swipeout
+          animation*/
+       remove[i].onclick = function()
+       {
+         var div = this.parentElement;
+         div.style.animation = "swipeout 0.5s";
+         this.style.display = "none";
+         /* Display "NA" when animation times out */
+         setTimeout(function()
+         {
+           div.style.display = "none";
+           save();
+         }, 500);
+     }
+ }
+     /* saves items to the list for local storage */
+     save();
+ }
+
+ /* Points text data to this.text */
+ function item(text)
+ {
+    this.text = text;
+ }
+
+ /* Adds the value to a text node for easier future handling */
+ function saddTo(text)
+ {
+   document.getElementById("inputField").value = text;
+   addTo();
+ }
+
+ /* Variable for all the UL elements on the page to be found */
+ var list = document.querySelector('UL');
+
+ /* Groups the list together under one variable */
+ var addLI = document.getElementsByTagName("li");
+
+ /* Assigns the value received from the inputField into the var inputItem */
+ var inputItem = document.getElementById("inputField");
+
+ /* Loops through and ensures that all list elements are grabbed */
+ for (i = 0; i < addLI.length; i++)
+ {
+     /* Use of span allows the in-line elements to become grouped */
+     var span = document.createElement("SPAN");
+     var text = document.createTextNode("-");
+     /* Groups the remove "X" and the list elements together */
+     span.className = "remove";
+     span.appendChild(text);
+     addLI[i].appendChild(span);
+ }
+
+ /* Loops, finds, and gathers all "remove" elements together */
+ var remove = document.getElementsByClassName("remove");
+ for (i = 0; i < remove.length; i++)
+ {
+   /* When remove is clicked, do the following... */
+   remove[i].onclick = function()
+   {
+     var div = this.parentElement;
+     /* Here, the swipeout CSS animation is called */
+     div.style.animation = "swipeout 0.5s";
+     /* When the animation is complete, make the X disappear */
+     this.style.display = "none";
+     /* When the animation is complete and the X is gone, make the list
+        element disappear at the same time */
+     setTimeout(function()
+     {
+       div.style.display = "none";
+       save();
+     }, 500);
+   }
+ }
+
+ /* Save function holds all methods required to save current status of
+    user's progression */
+ function save()
+ {
+   /* New array created */
+   items = new Array();
+   /* Assigns list elements into the variable data */
+   var data = document.getElementsByTagName("li");
+   /* Loops through elements of data */
+   for (i = 0; i < data.length; i++)
+   {
+     /* Gathers */
+     var str = data[i].innerHTML;
+     /* Parses */
+     var text = str.split("<")[0];
+     /* Creates new item and attaches it to text node for easier future
+        control */
+     var it = new item(text);
+     /* Displays "NA" if not found */
+     if (data[i].style.display != "NA")
+     {
+       /* If foudn, add to list */
+       items.push(it);
+     }
+   }
+   /* JSON */
+   var itemsstring = JSON.stringify(items);
+   /* Save */
+   localStorage.setItem("items", itemsstring);
+ }
+
+ /* clearLocal function is used to call all methods needed to clear
+    local storage on browser */
+ function clearLocal()
+ {
+     /* Gives user an alert asking to confirm if they would like to
+        proceed with specific action */
+     var conf = confirm("Clear existing data? Please confirm.");
+     /* User confirms with Yes */
+     if (conf == true)
+     {
+         /* Remove local storage */
+         localStorage.removeItem("items");
+         /* Alert confirming action was taken */
+         alert("Cleared. You're all set.");
+         /* After storage has been cleared, reload page for updated status */
+         location.reload();
+     }
+ }
+	</script>
+  <body>
+      <div class="main" id="main">
+        <h1>Shopping list</h1>
+        <input type="text" id="inputField" placeholder="What would you like to add to your list?">
+        <span onclick="addTo()" class="plus">+Add</span>
+      </div>
+      <ul id="addUL"></ul>
+      <div class="locstorage">
+        <a href="#" onclick="clearLocal()" style="float: center;">Clear Local Storage</a>
+  	  </div>
+    </body>
+</html>
